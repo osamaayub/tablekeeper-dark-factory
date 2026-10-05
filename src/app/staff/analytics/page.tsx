@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 import { useAuth } from '@/components/auth/AuthProvider';
@@ -114,7 +115,6 @@ export default function StaffAnalyticsPage() {
     }
     bootstrapped.current = true;
     void bootstrap();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /** Refetch the reservation window for a new range; focus stays put. */
@@ -160,12 +160,12 @@ export default function StaffAnalyticsPage() {
     <div>
       <h1 className="text-3xl font-bold text-foreground">Analytics</h1>
       <p className="mt-3">
-        <a
+        <Link
           href="/staff"
           className="text-sm font-medium text-foreground-muted underline underline-offset-4 hover:text-foreground"
         >
           Back to dashboard
-        </a>
+        </Link>
       </p>
 
       <div className="mt-6">

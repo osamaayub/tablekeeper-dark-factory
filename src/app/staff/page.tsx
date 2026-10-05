@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 import { useAuth } from '@/components/auth/AuthProvider';
@@ -35,67 +36,67 @@ export default function StaffPage() {
         aria-label="Staff sections"
         className="mt-4 flex flex-wrap gap-4 border-b border-border pb-2"
       >
-        <a
+        <Link
           href="/staff"
           aria-current="page"
           className="text-sm font-medium text-foreground underline underline-offset-4"
         >
           Overview
-        </a>
-        <a
+        </Link>
+        <Link
           href="/staff/tables"
           className="text-sm font-medium text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
         >
           Tables
-        </a>
-        <a
+        </Link>
+        <Link
           href="/staff/groups"
           className="text-sm font-medium text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
         >
           Groups
-        </a>
-        <a
+        </Link>
+        <Link
           href="/staff/floor-2d"
           className="text-sm font-medium text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
         >
           Floor
-        </a>
-        <a
+        </Link>
+        <Link
           href="/staff/reservations"
           className="text-sm font-medium text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
         >
           Reservations
-        </a>
-        <a
+        </Link>
+        <Link
           href="/staff/waitlist"
           className="text-sm font-medium text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
         >
           Waitlist
-        </a>
-        <a
+        </Link>
+        <Link
           href="/staff/hours"
           className="text-sm font-medium text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
         >
           Hours
-        </a>
-        <a
+        </Link>
+        <Link
           href="/staff/settings"
           className="text-sm font-medium text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
         >
           Settings
-        </a>
-        <a
+        </Link>
+        <Link
           href="/staff/team"
           className="text-sm font-medium text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
         >
           Team
-        </a>
-        <a
+        </Link>
+        <Link
           href="/staff/analytics"
           className="text-sm font-medium text-foreground-muted underline-offset-4 hover:text-foreground hover:underline"
         >
           Analytics
-        </a>
+        </Link>
       </nav>
       <div className="mt-6">
         <StaffOverview />

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 
 import { BookingSummary } from '@/components/booking/BookingSummary';
@@ -162,13 +163,13 @@ export function ReservationDetail({ reservation: initial }: ReservationDetailPro
         <Badge variant={statusBadgeVariant(reservation.status)}>
           {statusLabel(reservation.status)}
         </Badge>
-        <a
+        <Link
           data-back-link
           href="/staff/reservations"
           className="text-sm text-primary underline-offset-4 hover:underline"
         >
           Back to reservations
-        </a>
+        </Link>
       </div>
 
       {cancelledHere ? (

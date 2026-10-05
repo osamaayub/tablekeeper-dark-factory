@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
 
@@ -236,15 +237,15 @@ export default function ConfirmedPage() {
                 endsAt={reservation.ends_at}
                 uid={reservation.id}
               />
-              <a
+              <Link
                 href={`/restaurants/${encodeURIComponent(reservation.restaurant_id)}`}
                 className="text-sm text-primary underline-offset-4 hover:underline"
               >
                 View restaurant
-              </a>
-              <a href="/" className="text-sm text-primary underline-offset-4 hover:underline">
+              </Link>
+              <Link href="/" className="text-sm text-primary underline-offset-4 hover:underline">
                 Home
-              </a>
+              </Link>
             </div>
           </div>
         </>

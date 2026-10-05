@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
 
 import { Badge } from '@/components/ui/Badge';
@@ -91,18 +92,18 @@ export default function HomePage() {
           double-booking prevention.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <a
+          <Link
             href="/restaurants"
             className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:opacity-90"
           >
             Browse restaurants
-          </a>
-          <a
+          </Link>
+          <Link
             href="/login"
             className="rounded-md border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-surface-raised"
           >
             Log in
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -207,12 +208,12 @@ export default function HomePage() {
                     <p className="text-sm text-foreground-muted">{restaurant.address}</p>
                   ) : null}
                   <div className="mt-auto pt-2">
-                    <a
+                    <Link
                       href={`/restaurants/${restaurant.slug}`}
                       className="text-sm font-medium text-primary transition-colors hover:underline"
                     >
                       View {restaurant.name}
-                    </a>
+                    </Link>
                   </div>
                 </Card>
               </li>

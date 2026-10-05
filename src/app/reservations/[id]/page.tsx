@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'next/navigation';
 
@@ -244,13 +245,13 @@ export default function ReservationDetailPage() {
             <Badge variant={statusBadgeVariant(reservation.status)}>
               {statusLabel(reservation.status)}
             </Badge>
-            <a
+            <Link
               data-back-link
               href="/reservations"
               className="text-sm text-primary underline-offset-4 hover:underline"
             >
               Back to my reservations
-            </a>
+            </Link>
           </div>
 
           {cancelledHere ? (
