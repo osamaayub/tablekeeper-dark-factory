@@ -16,7 +16,8 @@ import { SiteHeader } from '@/components/layout/SiteHeader';
  * These tests pin the delivery contract: exactly one h1, semantic h2
  * sections, exact event/tech wording, the exact LinkedIn URL with
  * external-safe attributes, concise supporting cards (no invented copy),
- * and the initials fallback for the member without a photo.
+ * the short-name card without role or contribution, and photos for every
+ * rendered card.
  */
 
 const navState = vi.hoisted(() => ({ pathname: '/' }));
@@ -126,6 +127,7 @@ describe('Public team page (/team)', () => {
       'Frontend',
       'Deployment',
       'Project Workflow',
+      'Presentation Video',
     ]) {
       expect(html).toContain(`>${area}<`);
     }
@@ -140,32 +142,47 @@ describe('Public team page (/team)', () => {
   });
 
   it('keeps supporting cards to name, role, and at most one contribution', () => {
-    // One leader + five supporting article cards.
-    expect(html.match(/<article/g) ?? []).toHaveLength(6);
-    expect(html.match(/<h3/g) ?? []).toHaveLength(10);
+    // One leader + four supporting article cards.
+    expect(html.match(/<article/g) ?? []).toHaveLength(5);
+    expect(html.match(/<h3/g) ?? []).toHaveLength(9);
 
     for (const [name, role] of [
-      ['Osama Ayub', 'Project Setup &amp; Coordination'],
-      ['Sundas Arif', 'Research &amp; Presentation'],
-      ['Malaika Akbar', 'Early Project Research'],
-      ['Maryam Habib', 'Team Member'],
-      ['Muhammad Usman', 'Team Member'],
+      ['Osama Ayub', 'Project Setup &amp; Coordination, Presentation Slides'],
+      ['Sundas Arif', 'Research'],
+      ['Maryam Habib', 'Coordination with Team'],
     ]) {
       expect(html).toContain(name);
       expect(html).toContain(role);
     }
+    // Removed per brief: Sundas' "Presentation" task and Maryam's placeholder
+    // role — no replacement beyond what the brief specifies.
+    expect(html).not.toContain('Research &amp; Presentation');
+    expect(html).not.toContain('Team Member');
 
-    // Exactly the three supplied contribution sentences — none for Maryam/Muhammad.
-    expect(html.match(/Supported /g) ?? []).toHaveLength(3);
+    // Malaika is shown as the short name only — no full name, role, or
+    // contribution text beside or below it.
+    expect(html).toContain('>Malaika<');
+    expect(html).not.toContain('Malaika Akbar');
+    expect(html).not.toContain('Early Project Research');
+
+    // Exactly the two supplied contribution sentences — none for Malaika/Maryam.
+    expect(html.match(/Supported /g) ?? []).toHaveLength(2);
     expect(html).toContain(
       'Supported early project setup, research, coordination, and presentation.',
     );
     expect(html).toContain('Supported project research and presentation.');
-    expect(html).toContain('Supported early project research.');
-    expect(html).toContain('Team Member');
+    expect(html).not.toContain('Supported early project research.');
   });
 
-  it('maps the five delivered photos and falls back to initials for the missing one', () => {
+  it('orders the four members with Malaika in the last position', () => {
+    const positions = ['Osama Ayub', 'Sundas Arif', 'Maryam Habib', 'Malaika'].map((name) =>
+      html.indexOf(`>${name}<`),
+    );
+    expect(positions.every((index) => index > -1)).toBe(true);
+    expect([...positions].sort((a, b) => a - b)).toEqual(positions);
+  });
+
+  it('maps the five delivered photos with no initials fallback needed', () => {
     for (const file of [
       'hasnain-ahmad.png',
       'osama-ayub.png',
@@ -177,10 +194,8 @@ describe('Public team page (/team)', () => {
     }
     expect(html).not.toContain('muhammad-usman');
 
-    // Exactly one initials surface: Muhammad Usman, same accessible name as a photo.
-    expect(html.match(/role="img"/g) ?? []).toHaveLength(1);
-    expect(html).toMatch(/role="img" aria-label="Muhammad Usman"/);
-    expect(html).toContain('>MU<');
+    // Every rendered card has a photo — no initials surface at all.
+    expect(html.match(/role="img"/g) ?? []).toHaveLength(0);
     // Five real photos, each with alt text.
     expect(html.match(/<img/g) ?? []).toHaveLength(5);
   });
@@ -195,7 +210,7 @@ describe('Public team page (/team)', () => {
       expect(html).toContain(label);
     }
     expect(html.match(/<ol/g) ?? []).toHaveLength(1);
-    // 6 focus badges + 5 member cards + 4 pillar tiles.
+    // 7 focus badges + 4 member cards + 4 pillar tiles.
     expect(html.match(/<li/g) ?? []).toHaveLength(15);
   });
 });

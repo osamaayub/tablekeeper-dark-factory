@@ -354,9 +354,13 @@ describe('RLS policies', () => {
   });
 
   it('prevents a guest from cancelling another user\'s reservation via direct UPDATE', async () => {
-    // Create both users concurrently — the signups are independent.
-    const [{ client: clientA, userId: userA }, { client: clientB, userId: userB }] =
-      await Promise.all([createTestUserWithRetry(), createTestUserWithRetry()]);
+    // Create both users sequentially — firing both signups at once doubles
+    // the burst against the rate-limited Auth service, and a retry of one
+    // pairmate then retries the other in lockstep.
+    const clientAResult = await createTestUserWithRetry();
+    const clientBResult = await createTestUserWithRetry();
+    const { client: clientA, userId: userA } = clientAResult;
+    const { client: clientB, userId: userB } = clientBResult;
     createdUsers.push(userA, userB);
 
     const key = testId('test-guest-cancel-other');

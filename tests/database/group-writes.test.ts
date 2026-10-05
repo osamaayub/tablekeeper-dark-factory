@@ -46,7 +46,7 @@ let nonMember!: TestUser;
  * slow round-trip no longer aborts the file (previously the 30s hookTimeout
  * turned it into 8 skipped tests; hookTimeout is now 60s in vitest.config).
  * The file's four GoTrue signups go through the centralized
- * helpers.createTestUserWithRetry (same 3×2s bounds).
+ * helpers.createTestUserWithRetry (same bounded exponential bounds).
  */
 const SETUP_MAX_RETRIES = 3;
 const SETUP_RETRY_DELAY_MS = 2000;

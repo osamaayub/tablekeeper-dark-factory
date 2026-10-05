@@ -297,6 +297,35 @@ VALUES
   'Main Dining',
   '#3b82f6',
   0
+),
+-- Demo restaurants: one Main Dining section each, same layout as Bistro.
+(
+  '50000000-0000-4000-8000-000000000001',
+  'cccccccc-cccc-cccc-cccc-cccccccccccc',
+  'Main Dining',
+  '#3b82f6',
+  0
+),
+(
+  '50000000-0000-4000-8000-000000000002',
+  'dddddddd-dddd-dddd-dddd-dddddddddddd',
+  'Main Dining',
+  '#3b82f6',
+  0
+),
+(
+  '50000000-0000-4000-8000-000000000003',
+  'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
+  'Main Dining',
+  '#3b82f6',
+  0
+),
+(
+  '50000000-0000-4000-8000-000000000004',
+  'ffffffff-ffff-ffff-ffff-ffffffffffff',
+  'Main Dining',
+  '#3b82f6',
+  0
 )
 ON CONFLICT (id) DO NOTHING;
 
@@ -439,6 +468,200 @@ VALUES
   1,
   1,
   'rect'
+),
+-- Demo restaurants: a 2/4/6/8 table ladder in each Main Dining section,
+-- mirroring the first two restaurants' capacity coverage (parties 1-8).
+(
+  '60000000-0000-4000-8000-000000000001',
+  'cccccccc-cccc-cccc-cccc-cccccccccccc',
+  'C1',
+  2,
+  '50000000-0000-4000-8000-000000000001',
+  0,
+  0,
+  1,
+  1,
+  'round'
+),
+(
+  '60000000-0000-4000-8000-000000000002',
+  'cccccccc-cccc-cccc-cccc-cccccccccccc',
+  'C2',
+  4,
+  '50000000-0000-4000-8000-000000000001',
+  2,
+  0,
+  1,
+  1,
+  'square'
+),
+(
+  '60000000-0000-4000-8000-000000000003',
+  'cccccccc-cccc-cccc-cccc-cccccccccccc',
+  'C3',
+  6,
+  '50000000-0000-4000-8000-000000000001',
+  4,
+  0,
+  1,
+  1,
+  'rect'
+),
+(
+  '60000000-0000-4000-8000-000000000004',
+  'cccccccc-cccc-cccc-cccc-cccccccccccc',
+  'C4',
+  8,
+  '50000000-0000-4000-8000-000000000001',
+  6,
+  0,
+  1,
+  1,
+  'booth'
+),
+(
+  '60000000-0000-4000-8000-000000000005',
+  'dddddddd-dddd-dddd-dddd-dddddddddddd',
+  'S1',
+  2,
+  '50000000-0000-4000-8000-000000000002',
+  0,
+  0,
+  1,
+  1,
+  'round'
+),
+(
+  '60000000-0000-4000-8000-000000000006',
+  'dddddddd-dddd-dddd-dddd-dddddddddddd',
+  'S2',
+  4,
+  '50000000-0000-4000-8000-000000000002',
+  2,
+  0,
+  1,
+  1,
+  'square'
+),
+(
+  '60000000-0000-4000-8000-000000000007',
+  'dddddddd-dddd-dddd-dddd-dddddddddddd',
+  'S3',
+  6,
+  '50000000-0000-4000-8000-000000000002',
+  4,
+  0,
+  1,
+  1,
+  'rect'
+),
+(
+  '60000000-0000-4000-8000-000000000008',
+  'dddddddd-dddd-dddd-dddd-dddddddddddd',
+  'S4',
+  8,
+  '50000000-0000-4000-8000-000000000002',
+  6,
+  0,
+  1,
+  1,
+  'booth'
+),
+(
+  '60000000-0000-4000-8000-000000000009',
+  'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
+  'G1',
+  2,
+  '50000000-0000-4000-8000-000000000003',
+  0,
+  0,
+  1,
+  1,
+  'round'
+),
+(
+  '60000000-0000-4000-8000-000000000010',
+  'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
+  'G2',
+  4,
+  '50000000-0000-4000-8000-000000000003',
+  2,
+  0,
+  1,
+  1,
+  'square'
+),
+(
+  '60000000-0000-4000-8000-000000000011',
+  'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
+  'G3',
+  6,
+  '50000000-0000-4000-8000-000000000003',
+  4,
+  0,
+  1,
+  1,
+  'rect'
+),
+(
+  '60000000-0000-4000-8000-000000000012',
+  'eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee',
+  'G4',
+  8,
+  '50000000-0000-4000-8000-000000000003',
+  6,
+  0,
+  1,
+  1,
+  'booth'
+),
+(
+  '60000000-0000-4000-8000-000000000013',
+  'ffffffff-ffff-ffff-ffff-ffffffffffff',
+  'E1',
+  2,
+  '50000000-0000-4000-8000-000000000004',
+  0,
+  0,
+  1,
+  1,
+  'round'
+),
+(
+  '60000000-0000-4000-8000-000000000014',
+  'ffffffff-ffff-ffff-ffff-ffffffffffff',
+  'E2',
+  4,
+  '50000000-0000-4000-8000-000000000004',
+  2,
+  0,
+  1,
+  1,
+  'square'
+),
+(
+  '60000000-0000-4000-8000-000000000015',
+  'ffffffff-ffff-ffff-ffff-ffffffffffff',
+  'E3',
+  6,
+  '50000000-0000-4000-8000-000000000004',
+  4,
+  0,
+  1,
+  1,
+  'rect'
+),
+(
+  '60000000-0000-4000-8000-000000000016',
+  'ffffffff-ffff-ffff-ffff-ffffffffffff',
+  'E4',
+  8,
+  '50000000-0000-4000-8000-000000000004',
+  6,
+  0,
+  1,
+  1,
+  'booth'
 )
 ON CONFLICT (id) DO NOTHING;
 
@@ -519,7 +742,38 @@ VALUES
 ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 3, '10:00', '21:00', false),
 ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 4, '10:00', '21:00', false),
 ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 5, '10:00', '22:00', false),
-('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 6, '10:00', '22:00', false)
+('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', 6, '10:00', '22:00', false),
+-- Demo restaurants: complete weekly hours identical to The Test Kitchen
+-- (11:00-22:00 Mon-Fri pattern, Fri/Sat to 23:00) so slots generate the
+-- same way they do for the first two restaurants.
+('cccccccc-cccc-cccc-cccc-cccccccccccc', 0, '11:00', '22:00', false),
+('cccccccc-cccc-cccc-cccc-cccccccccccc', 1, '11:00', '22:00', false),
+('cccccccc-cccc-cccc-cccc-cccccccccccc', 2, '11:00', '22:00', false),
+('cccccccc-cccc-cccc-cccc-cccccccccccc', 3, '11:00', '22:00', false),
+('cccccccc-cccc-cccc-cccc-cccccccccccc', 4, '11:00', '22:00', false),
+('cccccccc-cccc-cccc-cccc-cccccccccccc', 5, '11:00', '23:00', false),
+('cccccccc-cccc-cccc-cccc-cccccccccccc', 6, '11:00', '23:00', false),
+('dddddddd-dddd-dddd-dddd-dddddddddddd', 0, '11:00', '22:00', false),
+('dddddddd-dddd-dddd-dddd-dddddddddddd', 1, '11:00', '22:00', false),
+('dddddddd-dddd-dddd-dddd-dddddddddddd', 2, '11:00', '22:00', false),
+('dddddddd-dddd-dddd-dddd-dddddddddddd', 3, '11:00', '22:00', false),
+('dddddddd-dddd-dddd-dddd-dddddddddddd', 4, '11:00', '22:00', false),
+('dddddddd-dddd-dddd-dddd-dddddddddddd', 5, '11:00', '23:00', false),
+('dddddddd-dddd-dddd-dddd-dddddddddddd', 6, '11:00', '23:00', false),
+('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 0, '11:00', '22:00', false),
+('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 1, '11:00', '22:00', false),
+('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 2, '11:00', '22:00', false),
+('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 3, '11:00', '22:00', false),
+('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 4, '11:00', '22:00', false),
+('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 5, '11:00', '23:00', false),
+('eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee', 6, '11:00', '23:00', false),
+('ffffffff-ffff-ffff-ffff-ffffffffffff', 0, '11:00', '22:00', false),
+('ffffffff-ffff-ffff-ffff-ffffffffffff', 1, '11:00', '22:00', false),
+('ffffffff-ffff-ffff-ffff-ffffffffffff', 2, '11:00', '22:00', false),
+('ffffffff-ffff-ffff-ffff-ffffffffffff', 3, '11:00', '22:00', false),
+('ffffffff-ffff-ffff-ffff-ffffffffffff', 4, '11:00', '22:00', false),
+('ffffffff-ffff-ffff-ffff-ffffffffffff', 5, '11:00', '23:00', false),
+('ffffffff-ffff-ffff-ffff-ffffffffffff', 6, '11:00', '23:00', false)
 ON CONFLICT (restaurant_id, day_of_week) DO NOTHING;
 
 -- ============================================

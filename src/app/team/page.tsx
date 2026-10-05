@@ -25,8 +25,8 @@ import { Badge } from '@/components/ui/Badge';
  *   prefers-reduced-motion (global rule + per-element motion-reduce).
  * - Exactly one h1; h2 sections for leadership, team, and pillars;
  *   meaningful alt text; visible focus from the global outline.
- * - Supporting cards render only portrait, name, role, and (where
- *   supplied) one contribution sentence — no invented content.
+ * - Supporting cards render only portrait and name, plus (where
+ *   supplied) a role and one contribution sentence — no invented content.
  */
 
 /* ---------------------------------- copy --------------------------------- */
@@ -52,6 +52,7 @@ const LEADER = {
     'Frontend',
     'Deployment',
     'Project Workflow',
+    'Presentation Video',
   ],
   linkedin: 'https://www.linkedin.com/in/hasnain-ahmad-047210349/',
   src: '/images/team/hasnain-ahmad.png',
@@ -60,38 +61,30 @@ const LEADER = {
 
 interface Member {
   readonly name: string;
-  readonly role: string;
+  readonly role?: string;
   readonly contribution?: string;
   readonly src: string | null;
   readonly initials: string;
 }
 
-/** Five supporting members — contribution only where explicitly supplied. */
+/** Four supporting members — role and contribution only where supplied. */
 const MEMBERS: readonly Member[] = [
   {
     name: 'Osama Ayub',
-    role: 'Project Setup & Coordination',
+    role: 'Project Setup & Coordination, Presentation Slides',
     contribution: 'Supported early project setup, research, coordination, and presentation.',
     src: '/images/team/osama-ayub.png',
     initials: 'OA',
   },
   {
     name: 'Sundas Arif',
-    role: 'Research & Presentation',
+    role: 'Research',
     contribution: 'Supported project research and presentation.',
     src: '/images/team/sundas-arif.png',
     initials: 'SA',
   },
-  {
-    name: 'Malaika Akbar',
-    role: 'Early Project Research',
-    contribution: 'Supported early project research.',
-    src: '/images/team/malaika-akbar.png',
-    initials: 'MA',
-  },
-  { name: 'Maryam Habib', role: 'Team Member', src: '/images/team/maryam-habib.png', initials: 'MH' },
-  // No photo delivered yet — renders the initials surface without a network request.
-  { name: 'Muhammad Usman', role: 'Team Member', src: null, initials: 'MU' },
+  { name: 'Maryam Habib', role: 'Coordination with Team', src: '/images/team/maryam-habib.png', initials: 'MH' },
+  { name: 'Malaika', src: '/images/team/malaika-akbar.png', initials: 'MA' },
 ];
 
 /* ---------------------------------- icons -------------------------------- */
@@ -325,7 +318,7 @@ function MemberCard({ member }: { member: Member }) {
       </div>
       <div className="flex flex-1 flex-col gap-1.5 p-5">
         <h3 className="text-lg font-semibold leading-snug tracking-tight text-foreground">{member.name}</h3>
-        <p className="text-sm font-medium text-primary">{member.role}</p>
+        {member.role ? <p className="text-sm font-medium text-primary">{member.role}</p> : null}
         {member.contribution ? (
           <p className="mt-1 text-sm leading-relaxed text-foreground-muted">{member.contribution}</p>
         ) : null}
